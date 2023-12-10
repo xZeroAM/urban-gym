@@ -1,0 +1,28 @@
+table {
+    color: #000;
+}
+
+.primera {
+    background-color: #0d0d0e !important;
+    color: #fff;
+}
+
+table {
+    width: 90% !important;
+    margin:  0 auto;
+}
+
+.titulo-rutina {
+    margin-top: 60px;
+    text-align: center;
+    text-decoration-line: underline;
+    font-size: 40px;
+}
+
+.descripcion-rutina {
+    text-align: center;
+}
+
+.duracion-rutina {
+    text-align: center;
+}

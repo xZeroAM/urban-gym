@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=https://www.thymeleaf.org>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/inicio.css">
+    <link rel="stylesheet" href="/css/styleAdmin.css">
+    <link rel="stylesheet" href="/css/paralaslistas.css">
+    <link rel="stylesheet" href="/css/rutinas_mostrar_todo.css">
+</head>
+
+<body>
+    <div>
+        <nav class="navegador">
+            <div class="logo">
+                <small class="pesa"><i class="fa-solid fa-dumbbell"></i>
+                    <h3 class="navegador-title"></i>
+                </small>URBANGYM</h3>
+            </div>
+            <ul class="navegador-items">
+                <li><a th:href="@{/urbangym/}">Inicio</a></li>
+                <li><a href="#">Instalaciones</a></li>
+                <li><a href="#">Novedades</a></li>
+                <li class="active"><a th:href="@{/urbangym/user/lista_rutinas}">Tu espacio</a></li>
+
+                <li><a th:href="@{/urbangym/login/logout}">Cerrar Sesion</a></li>
+            </ul>
+            <div class="button-nav">
+                <i class="boton-nav fa-solid fa-bars fa-2x"></i>
+            </div>
+        </nav>
+    </div>
+    <h3 th:text="${rutina.name_routine}" class="titulo-rutina"></h3>
+    <h3 th:text="${rutina.description_routine}" class="descripcion-rutina"></h3>
+    <h3 th:text="${rutina.duration}" class="duracion-rutina"></h3>
+    <!-- <table style="border: 1px solid black;">
+        <thead>
+            <tr th:each=" rutinaday : ${lista_routine_day}">
+                <th th:text="${rutinaday.id_routine_day.id_day.day_name}"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each = "rutinaday : ${lista_routine_day}">
+                <th:block th:each = " ejercicio : ${rutinaday.exercises}">
+                    <td th:text="${ejercicio.name_exercise}"></td>
+                    <td th:text="${ejercicio.series_reps}"></td>
+                    <td th:text="${ejercicio.description_exercise}"></td>
+                </th:block>
+            </tr>
+        </tbody>
+    </table> -->
+    <!-- ESTE ES EL IMPORTANTEEEEEE - AQUI CAMBIEN LOS DISEÑOS EL OTRO QUE NO ESTA ES SOLO PARA VER LA TABLA COMO QUEDARIA -->
+    <!-- <table style="border: 1px solid black;">
+        <tbody>
+            <tr th:each="rutinaday : ${lista_routine_day}">
+                <td th:text="${rutinaday.id_routine_day.id_day.day_name}"></td>
+                <th:block th:each=" ejercicio : ${rutinaday.exercises}">       
+                    <td>
+                        <span th:text="${ejercicio.name_exercise}"></span><br />
+                        <span th:text="${ejercicio.series_reps}"></span><br />
+                        <span th:text="${ejercicio.description_exercise}"></span>
+                    </td>
+                </th:block>
+            </tr>
+        </tbody>
+    </table>    -->
+    <!-- ESTE ES EL IMPORTANTEEEEEE - AQUI CAMBIEN LOS DISEÑOS EL OTRO QUE NO ESTA ES SOLO PARA VER LA TABLA COMO QUEDARIA -->
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .excel-column {
+            font-weight: bold;
+            background-color: #F2F2F2;
+        }
+
+        .gray-cell {
+            background-color: lightgray;
+        }
+
+        .blue-cell {
+            background-color: lightblue;
+        }
+
+        .green-cell {
+            background-color: lightgreen;
+        }
+    </style>
+
+    <table>
+        <tbody>
+            <tr th:each="rutinaday, rowStatus : ${lista_routine_day}">
+                <td class="excel-column primera" th:text="${rutinaday.id_routine_day.id_day.day_name}"></td>
+                <th:block th:each="ejercicio, colStatus : ${rutinaday.exercises}">
+                    <td
+                        th:class="${rowStatus.even ? (colStatus.even ? 'gray-cell' : 'blue-cell') : (colStatus.even ? 'blue-cell' : 'green-cell')}">
+                        <span th:text="${ejercicio.name_exercise}"></span><br />
+                        <span th:text="${ejercicio.series_reps}"></span><br />
+                        <span th:text="${ejercicio.description_exercise}"></span>
+                    </td>
+                </th:block>
+            </tr>
+        </tbody>
+    </table>
+
+    <script src="https://kit.fontawesome.com/c37024d023.js" crossorigin="anonymous"></script>
+    <script src="/js/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+:root {
+    --first-color: #2bff00;
+    --color-nav: #0d0d0e;
+}
+
+body {
+    background: url(https://fondosmil.com/fondo/4083.jpg);
+}
+
+.main-form {
+    margin-top: 50px;
+    height: calc(100vh - 50px);
+    margin-bottom: 0px;
+}
+
+.form {
+    width: 40%;
+    background-color: var(--color-nav);
+    border-radius: 20px;
+    padding: 10px 10px;
+    display: inline-flex;
+    margin: 4rem auto;
+}
+
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.item-form {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+}
+
+.item-form input {
+    height: 2rem;
+    margin-top: 5px;
+    padding: 3px 10px;
+    border: var(--first-color) 3px solid;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.item-form label {
+    color: #fff;
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 20px;
+}
+
+.form-button {
+    width: 100%;
+}
+
+.item-form:last-child:nth-child(odd) {
+    margin-right: auto;
+}
+
+.title-form {
+    color: var(--first-color);
+}
+
+.form-button input{
+    background-color: var(--first-color);
+    padding: 5px;
+    border-radius: 5px;
+    margin: 10px;
+    width: 20%;
+    height: 35px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.form-button {
+    display: flex;
+    justify-content: center;
+}
+
+.alert-form {
+    color: rgb(151, 0, 0);
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 2px;
+}

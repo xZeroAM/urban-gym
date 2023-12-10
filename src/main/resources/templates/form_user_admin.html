@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbanGym - Admin</title>
+</head>
+<body>
+    <h1 th:text="${titulo}"></h1>
+    <form th:action="@{/urbangym/admin/user/form/guardar}" th:object="${user}" method="post" enctype="multipart/form-data">
+        <div class="item-form">
+            <label for="dni-usuario" class="label">DNI</label><input id="dni-usuario" th:field="*{dni}" type="number">
+            <small class="alert-form" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></small>
+        </div>
+    
+        <div class="item-form">
+            <label for="nombre-usuario" class="label">Nombre</label><input id="nombre-usuario" th:field="*{name}">
+            <small class="alert-form" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+        </div>
+    
+        <div class="item-form">
+            <label for="apellido-usuario" class="label">Apellidos</label><input id="apellido-usuario" th:field="*{lastName}" name="nombre">
+            <small class="alert-form" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></small>
+        </div>
+    
+        <div class="item-form">
+            <label for="cell-usuario" class="label">Celular</label><input id="cell-usuario" th:field="*{cellPhone}" type="number">
+            <small class="alert-form" th:if="${#fields.hasErrors('cellPhone')}" th:errors="*{cellPhone}"></small>
+        </div>
+    
+        <div class="item-form">
+            <label for="email-usuario" class="label">Email</label><input id="email-usuario" th:field="*{email}" type="email">
+            <small class="alert-form" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+        </div>
+    
+        <div class="item-form">
+            <label for="password-usuario" class="label">Contraseña</label><input id="password-usuario" th:field="*{password}" type="password">
+            <small class="alert-form" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+        </div>
+    
+        <div class="item-form">
+            <label for="confirmacion-password-usuario" class="label">Confirmar Contraseña</label><input id="confirmacion-password-usuario" name="repassword" type="password">
+            <small class="alert-form" th:text="${aviso}"></small>
+        </div>
+        
+        <div class="item-form">
+            <label for="coach-usuario" class="label">Coach</label>
+            <select th:field="*{coach}" multiple="multiple">
+                <option th:value="${null}">Ninguno</option>
+                <th:block th:each="coach : ${ls_coach}">
+					<option th:text="${coach.name} + ' ' + ${coach.lastName}" th:value="${coach.dni}"></option>
+                </th:block>
+            </select>
+        </div>
+
+        <div class="item-form" th:object="${membership}">
+            <div class="item-form">
+                <label for="plan-membership" class="label">Planes</label>
+                <select th:field="*{plan}">
+                    <th:block th:each="plan : ${ls_plans}">
+                        <option th:text="${plan.title}" th:value="${plan.id}"></option>
+                    </th:block>
+                </select>
+            </div>
+            <div class="item-form">
+                <label for="startDate-membership" class="label">Inicio de membresia</label><input th:field="*{startDate}" type="date">
+            </div>
+            <div class="item-form">
+                <label for="startDate-membership" class="label">Inicio de membresia</label><input th:field="*{endDate}" type="date">
+            </div>
+        </div>
+
+        <div>
+            <label>Foto</label><input type="file" name="file">
+        </div>
+
+        <div class="form-button">
+            <input type="submit" value="Guardar">
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/inicio.css">
+    <link rel="stylesheet" href="/css/index_admin.css">
+    <title>UrbanGym</title>
+</head>
+
+<body>
+
+    <div>
+        <nav class="navegador">
+            <div class="logo">
+                <small class="pesa"><i class="fa-solid fa-dumbbell"></i>
+                    <h3 class="navegador-title"></i>
+                </small>URBANGYM</h3>
+            </div>
+            <ul class="navegador-items">
+                <li><a th:href="@{/urbangym/}">Inicio</a></li>
+                <li><a href="#">Instalaciones</a></li>
+                <li><a href="#">Novedades</a></li>
+                <li class="active"><a th:href="@{/urbangym/admin}">Admin</a></li>
+
+                <li><a th:href="@{/urbangym/login/logout}">Cerrar Sesion</a></li>
+            </ul>
+            <div class="button-nav">
+                <i class="boton-nav fa-solid fa-bars fa-2x"></i>
+            </div>
+        </nav>
+    </div>
+    <div class="contenedor-cosas">
+        <div class="contenedor_links_admin">
+            <ul>
+                <li class="links_admin"><a href="/urbangym/admin/user/lista_usuarios">Lista de usuarios</a></li>
+                <li class="links_admin"><a href="/urbangym/admin/user/form">Agregar nuevo usuario</a></li>
+                <li class="links_admin"><a href="/urbangym/admin/coach/lista_coachs">Lista de Coachs</a></li>
+                <li class="links_admin"><a href="/urbangym/admin/coach/form">Agregar nuevo coach</a></li>
+                <li class="links_admin"><a href="/urbangym/admin/plan/lista">Lista de planes</a></li>
+                <li class="links_admin"><a href="/urbangym/admin/plan/form">Agregar nuevo plan</a></li>
+            </ul>
+        </div>
+
+        <div class="cards-contadores">
+            <div class="card">
+                <h3>Usuarios totales</h3>
+                <h3 th:text="${cantidad_usuarios}" class="contador"></h3>
+            </div>
+            <div class="card">
+                <h3>Coachs totales</h3>
+                <h3 th:text="${cantidad_coachs}" class="contador"></h3>
+            </div>
+            <div class="card">
+                <h3>Planes totales</h3>
+                <h3 th:text="${cantidad_planes}" class="contador"></h3>
+            </div>
+            <!-- <div class="card">
+                <h3>Usuarios Activos totales</h3>
+                <h3 th:text="${cantidad_usuarios_activos}" class="contador"></h3>
+            </div> -->
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/c37024d023.js" crossorigin="anonymous"></script>
+    <script src="/js/index.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+
+</html>

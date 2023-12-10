@@ -1,0 +1,66 @@
+body {
+	background: url(https://fondosmil.com/fondo/4083.jpg);
+	width: 100%;
+	height: 100vh;
+	background-size: cover;
+	color:white;
+    position: sticky;
+}
+
+.links_admin a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.links_admin {
+    padding: 0;
+    list-style: circle;
+    margin-bottom: 40px;
+}
+
+.contenedor_links_admin {
+    padding-top: 70px;
+    height: 100vh;
+    width: 240px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    background-color: #0d0d0e;
+}
+
+.contenedor-cosas {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    height: 100vh;
+}
+
+.cards-contadores {
+    padding-top: 50px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 200px;
+}
+
+.card {
+    background-color: #0d0d0e;
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+    width: 20%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+.card h3 {
+    margin: 0;
+    font-size: 18px;
+    width: 200px;
+  }
+  
+  .card .contador {
+    font-size: 50px;
+    font-weight: bold;
+    width: 200px;
+  }

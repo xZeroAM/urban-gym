@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=https://www.thymeleaf.org>
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/css/inicio.css">
+
+    <link rel="stylesheet" href="/css/styleAdmin.css">
+    <link rel="stylesheet" href="/css/paralaslistas.css">
+    <title>UrbanGym</title>
+</head>
+
+<body>
+    <nav class="navegador">
+        <div class="logo">
+            <small class="pesa"><i class="fa-solid fa-dumbbell"></i>
+                <h3 class="navegador-title"></i>
+            </small>URBANGYM</h3>
+        </div>
+        <ul class="navegador-items">
+            <li><a th:href="@{/urbangym}">Inicio</a></li>
+            <li><a href="#">Instalaciones</a></li>
+            <li><a href="#">Novedades</a></li>
+            <li class="active"><a th:href="@{/urbangym/coach/list_users}">Coach</a></li>
+            <!-- <li><a href="#" th:text="'Bienvenida ' + ${nombre_del_usuario}">Tu espacio</a></span></li> -->
+            <li><a th:href="@{/urbangym/login/logout}">Cerrar Sesion</a></li>
+        </ul>
+        <div class="button-nav">
+            <i class="boton-nav fa-solid fa-bars fa-2x"></i>
+        </div>
+    </nav>
+    <br><br><br>
+    <div class="contenido">
+        <table class="table table-striped tabla">
+
+            <thead class="thead-dark">
+
+                <tr>
+
+                    <th scope="col">DNI</th>
+
+                    <th scope="col">NOMBRE</th>
+
+                    <th scope="col">APELLIDOS</th>
+
+                    <th scope="col">CELULAR</th>
+
+                    <th scope="col">EMAIL</th>
+
+                    <th scope="col">FOTO</th>
+
+                    <th scope="col">COACH</th>
+
+                    <th scope="col">ESTADO</th>
+
+                    <th scope="col">AGREGAR RUTINA</th>
+
+                    <th scope="col">VER LISTA DE RUTINAS</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr th:each="user : ${lista_usuarios_del_coach}">
+
+                    <td th:text="${user.dni}"></td>
+
+                    <td th:text="${user.name}"></td>
+
+                    <td th:text="${user.lastName}"></td>
+
+                    <td th:text="${user.cellPhone}"></td>
+
+                    <td th:text="${user.email}"></td>
+
+                    <td><img th:src="@{/urbangym/coach/foto/{id}(id=${user.id_user})}" width="100" height="100" /></td>
+
+                    <td
+                        th:text="${user.coach != null ? user.coach.name + ' ' + user.coach.lastName : 'Sin entrenador asignado'}">
+
+                    </td>
+
+                    <th:block th:if="${#lists.contains(user.memberships.![membershipStatus.status], true)}">
+                        <td>Activo</td>
+                    </th:block>
+
+                    <th:block th:unless="${#lists.contains(user.memberships.![membershipStatus.status], true)}">
+                        <td>Inactivo</td>
+                    </th:block>
+
+                    <td><a th:href="@{/urbangym/coach/routine/form/{id}(id=${user.id_user})}">Agregar</a></td>
+
+                    <td><a th:href="@{/urbangym/coach/routine/lista_rutinas/{id}(id=${user.id_user})}">Ver lista de
+                            rutinas</a></td>
+
+                </tr>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+    <script src="https://kit.fontawesome.com/c37024d023.js" crossorigin="anonymous"></script>
+    <script src="/js/index.js"></script>
+</body>
+
+</html>

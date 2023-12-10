@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/inicio.css">
+    <link rel="stylesheet" href="/css/styleAdmin.css">
+    <link rel="stylesheet" href="/css/form_plan.css">
+    <link rel="stylesheet" href="/css/snackbar.css">
+    <title>UrbanGYM</title>
+</head>
+
+<body>
+    <nav class="navegador">
+        <div class="logo">
+            <small class="pesa"><i class="fa-solid fa-dumbbell"></i>
+                <h3 class="navegador-title"></i>
+            </small>URBANGYM</h3>
+        </div>
+        <ul class="navegador-items">
+            <li><a th:href="@{/urbangym/}">Inicio</a></li>
+            <li><a href="#">Instalaciones</a></li>
+            <li><a href="#">Novedades</a></li>
+            <li class="active"><a th:href="@{/urbangym/admin}">Admin</a></li>
+            <!-- <li><a href="#" th:text="'Bienvenida ' + ${nombre_del_usuario}">Tu espacio</a></span></li> -->
+            <li><a th:href="@{/urbangym/login/logout}">Cerrar Sesion</a></li>
+        </ul>
+        <div class="button-nav">
+            <i class="boton-nav fa-solid fa-bars fa-2x"></i>
+        </div>
+    </nav>
+
+    <div class="formulario">
+        <div class="form-container">
+            <h1 class="form-title">MEMBRESÍA - USUARIO</h1>
+            <form th:action="@{/urbangym/admin/user/membresia/guardar}" method="post" enctype="multipart/form-data">
+                <div class="item-form" th:object="${membership}">
+                    <div class="item-form">
+                        <label for="plan-membership" class="label">Planes</label>
+                        <select th:field="*{plan}" class="input-field">
+                            <th:block th:each="plan : ${ls_plans}">
+                                <option th:text="${plan.title}" th:value="${plan.id}"></option>
+                            </th:block>
+                        </select>
+                    </div>
+
+                    <div class="item-form">
+                        <label for="startDate-membership" class="label">Inicio de membresia</label>
+                        <input th:field="*{startDate}" type="date" class="input-field">
+                        <small class="alert-form" th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></small>
+                    </div>
+
+                    <div class="item-form">
+                        <label for="startDate-membership" class="label">Fin de membresia</label>
+                        <input th:field="*{endDate}" type="date" class="input-field">
+                        <small class="alert-form" th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></small>
+                    </div>
+
+                    <div class="item-form">
+                        <input th:field="*{user}" type="hidden" th:value="${user}">
+                    </div>
+
+                </div>
+                <div class="form-button">
+                    <input type="submit" value="Guardar la membresía" class="submit-button"></input>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <div id="snackbar">Guardado Exitoso</div>
+    <script>
+        function mostrarSnackbar() {
+            var snackbar = document.getElementById("snackbar");
+            snackbar.className = "show";
+            setTimeout(function () { snackbar.className = snackbar.className.replace("show", ""); }, 3000); // Ocultar el Snackbar después de 3 segundos
+        }
+        // Comprobar si hay un error en la URL
+        if (window.location.href.indexOf("?success") > -1) {
+            mostrarSnackbar();
+        }
+    </script>
+</body>
+
+</html>

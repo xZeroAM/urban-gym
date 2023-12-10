@@ -1,0 +1,21 @@
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.contenido{
+   padding: 10px 40px;
+}
+.tabla{
+   padding: 50px;	
+}
+.titulo{
+    background-color: black;
+    color: white;
+    padding: 20px; /* Agrega espacio interno alrededor del contenido del h1 */
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box; /* Incluye el padding en el ancho total del elemento */
+}

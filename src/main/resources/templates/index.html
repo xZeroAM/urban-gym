@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/inicio.css">
+    <link rel="stylesheet" href="/css/snackbar.css">
+    <title>UrbanGym</title>
+</head>
+
+<body>
+    <!-- <nav class="navegador">
+        <div class="logo">
+            <small class="pesa"><i class="fa-solid fa-dumbbell"></i>
+                <h3 class="navegador-title"></i>
+            </small>URBANGYM</h3>
+        </div>
+        <ul class="navegador-items">
+            <li class="active"><a href="index.html">Inicio</a></li>
+            <li><a href="#">Instalaciones</a></li>
+            <li><a href="#">Novedades</a></li>
+            <li><a href="#">Tu espacio</a></li>
+            <li><a href="/urbangym/formulario_usuario">Iniciar Sesion</a></li>
+        </ul>
+        <div class="button-nav">
+            <i class="boton-nav fa-solid fa-bars fa-2x"></i>
+        </div>
+    </nav> -->
+    <div th:include="template_nav_user.html::header" th:if="${sesion_user==null}"></div>
+    <div th:include="template_nav_user.html::header-user" th:if="${sesion_user!=null && rol_session=='ROLE_USER'}">
+    </div>
+    <div th:include="template_nav_user.html::header-coach" th:if="${sesion_user!=null && rol_session=='ROLE_COACH'}">
+    </div>
+    <div th:include="template_nav_user.html::header-admin" th:if="${sesion_user!=null && rol_session=='ROLE_ADMIN'}">
+    </div>
+
+    <main>
+        <div class="img-banner">
+            <div data-aos="fade-right">
+                <h2 class="text-banner-1">BIENVENIDO</h2>
+                <h2 class="text-banner-2">A tu GYM de confianza</h2>
+            </div>
+        </div>
+
+        <h1 class="titulo-1">NUESTROS PLANES FIT</h1>
+
+        <div class="card-container" data-aos="fade-up">
+
+            <div class="card" th:each="plan : ${plans}">
+                <a href="https://api.whatsapp.com/send/?phone=941153390&text=Hola+UrbanGYM+me+interesa+inscribirme&type=phone_number&app_absent=0"
+                    target="_BLANK">
+                    <figure>
+                        <img class="img-plan" th:src="@{/urbangym/foto/{id}(id=${plan.id})}" />
+                    </figure>
+                    <div class="contenido">
+                        <p th:text="${plan.title}"></p>
+                        <p th:text="${plan.description}"></p>
+                        <p th:text="${plan.price}"></p>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="container__footer">
+            <div class="box__footer">
+                <div class="logo">
+                    <small class="pesa">
+                        <i class="fa-solid fa-dumbbell"></i>
+                    </small>
+                    <h3 class="navegador-title">URBANGYM</h3>
+                </div>
+            </div>
+            <div class="box__footer">
+                <h2>Información:</h2>
+                <a>Dirección: Av. Universitaria cdra 73, Retablo 15314</a> <a>Distrito: San Agustin</a>
+                <a>Departamento: Lima, Perú</a> <a>Teléfono: 955 152 262</a>
+            </div>
+            <div class="box__footer">
+                <h2>URBANGYM</h2>
+                <a href="#">Nosotros</a> <a href="#">Instalaciones</a> <a href="#">Novedades</a>
+                <a href="#">Tu espacio</a> <a href="#">Iniciar Sesion</a>
+            </div>
+            <div class="box__footer">
+                <h2>Desarrolladores:</h2>
+                <a><i class="fa-brands fa-dev"> </i> Araujo V. Matias Nicolas</a>
+                <a><i class="fa-solid fa-code"> </i> Yasser M. Avalos Montero</a>
+                <a><i class="fa-solid fa-laptop-code"> </i> Jesus A. Soria Llantoy</a>
+                <a><i class="fa-solid fa-terminal"> </i> Arturo T. Aliaga Silva</a>
+                <a><i class="fa-brands fa-dev"> </i> Leonardo M. Caycho Rivas</a>
+                <a><i class="fa-solid fa-laptop-code"> </i> Kristell Flores</a>
+            </div>
+        </div>
+        <div class="box__copyright">
+            <hr>
+            <p>
+                Todos los derechos reservados © 2023 <b>UrbanGYM
+                    S.A.C.</b>
+            </p>
+        </div>
+    </footer>
+    <div id="snackbar-login" class="snackbar">
+        Inicio de sesión exitoso.
+    </div>
+
+    <div id="snackbar-logout" class="snackbar">
+        Cierre de sesión exitoso.
+    </div>
+    <script>
+        function mostrarSnackbar(elementId) {
+            var snackbar = document.getElementById(elementId);
+            snackbar.className = "snackbar show";
+            setTimeout(function () { snackbar.className = snackbar.className.replace("show", ""); }, 3000);
+        }
+
+        // Comprobar si se ha iniciado sesión correctamente
+        if (window.location.href.indexOf("?login_success") > -1) {
+            mostrarSnackbar("snackbar-login");
+        }
+
+        // Comprobar si se ha cerrado sesión correctamente
+        if (window.location.href.indexOf("?logout_success") > -1) {
+            mostrarSnackbar("snackbar-logout");
+        }
+    </script>
+
+    <script src="https://kit.fontawesome.com/c37024d023.js" crossorigin="anonymous"></script>
+    <script src="/js/index.js"></script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+
+</html>

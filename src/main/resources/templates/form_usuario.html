@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/form_usuario.css">
+    <title>UrbanGym - Agregar nuevo usuario</title>
+</head>
+<body>
+
+    <nav class="navegador">
+        <div class="logo">
+            <small class="pesa"><i class="fa-solid fa-dumbbell"></i>
+                <h3 class="navegador-title"></i>
+            </small>URBANGYM</h3>
+        </div>
+        <ul class="navegador-items">
+            <li><a href="/urbangym/">Inicio</a></li>
+            <li><a href="#">Instalaciones</a></li>
+            <li><a href="#">Novedades</a></li>
+            <li><a href="#">Tu espacio</a></li>
+            <li class="active"><a href="/urbangym/formulario_usuario">Iniciar Sesion</a></li>
+        </ul>
+        <div class="button-nav">
+            <i class="boton-nav fa-solid fa-bars fa-2x"></i>
+        </div>
+    </nav>
+
+    <main class="main-form">
+    <div class="form-container" data-aos="fade-right">
+    <form th:action="@{/urbangym/guardar}" th:object="${user}" method="POST" class="form">
+
+        <h1 th:text="${titulo}" class="title-form"></h1>
+
+    <div class="item-form">
+        <label for="dni-usuario" class="label">DNI</label><input id="dni-usuario" th:field="*{dni}" type="number">
+        <small class="alert-form" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></small>
+    </div>
+
+    <div class="item-form">
+        <label for="nombre-usuario" class="label">Nombre</label><input id="nombre-usuario" th:field="*{nombre}">
+        <small class="alert-form" th:if="${#fields.hasErrors('nombre')}" th:errors="*{name}"></small>
+    </div>
+
+    <div class="item-form">
+        <label for="apellido-usuario" class="label">Apellidos</label><input id="apellido-usuario" th:field="*{apellidos}" name="nombre">
+        <small class="alert-form" th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}"></small>
+    </div>
+
+    <div class="item-form">
+        <label for="cell-usuario" class="label">Celular</label><input id="cell-usuario" th:field="*{num_cell}" type="number">
+        <small class="alert-form" th:if="${#fields.hasErrors('num_cell')}" th:errors="*{num_cell}"></small>
+    </div>
+
+    <div class="item-form">
+        <label for="email-usuario" class="label">Email</label><input id="email-usuario" th:field="*{email}" type="email">
+        <small class="alert-form" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+    </div>
+
+    <div class="item-form">
+        <label for="password-usuario" class="label">Contraseña</label><input id="password-usuario" th:field="*{password}" type="password">
+        <small class="alert-form" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+    </div>
+
+    <div class="item-form">
+        <label for="confirmacion-password-usuario" class="label">Confirmar Contraseña</label><input id="confirmacion-password-usuario" name="re_password" type="password">
+        <small class="alert-form" th:text="${password_confirm}"></small>
+    </div>
+
+    <div class="form-button">
+        <input type="submit" value="Guardar">
+    </div>
+    </form>
+
+</div>
+    <script src="https://kit.fontawesome.com/c37024d023.js" crossorigin="anonymous"></script>
+    <script src="/js/index.js"></script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</main>
+</body>
+</html>

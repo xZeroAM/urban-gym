@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragmento del navegador para la pagina de inicio</title>
+</head>
+
+<body>
+    <div th:fragment="header">
+        <nav class="navegador">
+            <div class="logo">
+                <small class="pesa"><i class="fa-solid fa-dumbbell"></i>
+                    <h3 class="navegador-title"></i>
+                </small>URBANGYM</h3>
+            </div>
+            <ul class="navegador-items">
+                <li class="active"><a th:href="@{/urbangym/}">Inicio</a></li>
+                <li><a href="#">Instalaciones</a></li>
+                <li><a href="#">Novedades</a></li>
+                <li><a th:href="@{/urbangym/login/}">Tu espacio</a></li>
+                <li><a th:href="@{/urbangym/login/}">Iniciar Sesion</a></li>
+            </ul>
+            <div class="button-nav">
+                <i class="boton-nav fa-solid fa-bars fa-2x"></i>
+            </div>
+        </nav>
+    </div>
+
+    <div th:fragment="header-user">
+        <nav class="navegador">
+            <div class="logo">
+                <small class="pesa"><i class="fa-solid fa-dumbbell"></i>
+                    <h3 class="navegador-title"></i>
+                </small>URBANGYM</h3>
+            </div>
+            <ul class="navegador-items">
+                <li class="active"><a th:href="@{/urbangym/}">Inicio</a></li>
+                <li><a href="#">Instalaciones</a></li>
+                <li><a href="#">Novedades</a></li>
+                <li><a th:href="@{/urbangym/user/lista_rutinas}">Tu espacio</a></li>
+                <!-- <li><a href="#" th:text="'Bienvenida ' + ${nombre_del_usuario}">Tu espacio</a></span></li> -->
+                <li><a th:href="@{/urbangym/login/logout}">Cerrar Sesion</a></li>
+            </ul>
+            <div class="button-nav">
+                <i class="boton-nav fa-solid fa-bars fa-2x"></i>
+            </div>
+        </nav>
+    </div>
+
+    <div th:fragment="header-admin">
+        <nav class="navegador">
+            <div class="logo">
+                <small class="pesa"><i class="fa-solid fa-dumbbell"></i>
+                    <h3 class="navegador-title"></i>
+                </small>URBANGYM</h3>
+            </div>
+            <ul class="navegador-items">
+                <li class="active"><a th:href="@{/urbangym/}">Inicio</a></li>
+                <li><a href="#">Instalaciones</a></li>
+                <li><a href="#">Novedades</a></li>
+                <li><a th:href="@{/urbangym/admin}">Admin</a></li>
+                <!-- <li><a href="#" th:text="'Bienvenida ' + ${nombre_del_usuario}">Tu espacio</a></span></li> -->
+                <li><a th:href="@{/urbangym/login/logout}">Cerrar Sesion</a></li>
+            </ul>
+            <div class="button-nav">
+                <i class="boton-nav fa-solid fa-bars fa-2x"></i>
+            </div>
+        </nav>
+    </div>
+
+
+    <div th:fragment="header-coach">
+        <nav class="navegador">
+            <div class="logo">
+                <small class="pesa"><i class="fa-solid fa-dumbbell"></i>
+                    <h3 class="navegador-title"></i>
+                </small>URBANGYM</h3>
+            </div>
+            <ul class="navegador-items">
+                <li class="active"><a th:href="@{/urbangym}">Inicio</a></li>
+                <li><a href="#">Instalaciones</a></li>
+                <li><a href="#">Novedades</a></li>
+                <li><a th:href="@{/urbangym/coach/list_users}">Coach</a></li>
+                <!-- <li><a href="#" th:text="'Bienvenida ' + ${nombre_del_usuario}">Tu espacio</a></span></li> -->
+                <li><a th:href="@{/urbangym/login/logout}">Cerrar Sesion</a></li>
+            </ul>
+            <div class="button-nav">
+                <i class="boton-nav fa-solid fa-bars fa-2x"></i>
+            </div>
+        </nav>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 th:text="${titulo}"></h1>
+    <form th:action="@{/urbangym/admin/plan/editar/guardar}" th:object="${plan}" method="post" enctype="multipart/form-data">
+        <input th:value="${plan.id}" th:field="${plan.id}">
+        <div class="item-form">
+            <input th:value="${plan.id}" th:field="${plan.id}">
+        </div>
+        <div class="item-form">
+            <label for="title-plan" class="label">Titulo</label><input id="title-plan" th:field="*{title}">
+            <small class="alert-form" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></small>
+        </div>
+        
+        <div class="item-form">
+            <label for="desc-plan" class="label">Descripción</label><input id="desc-plan" th:field="*{description}">
+            <small class="alert-form" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></small>
+        </div>
+
+        <div class="item-form">
+            <label for="price-plan" class="label">Precio</label><input id="price-plan" th:field="*{price}" type="number">
+            <small class="alert-form" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></small>
+        </div>
+
+        <div class="item-form">
+            <label for="duration-plan" class="label">Duracion del plan (meses)</label><input id="duration-plan" th:field="*{duration}" type="number">
+            <small class="alert-form" th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}"></small>
+        </div>
+
+        <div>
+            <label>Foto</label><input type="file" name="file">
+        </div>
+
+        <div class="form-button">
+            <input type="submit" value="Guardar">
+        </div>
+    </form>
+</body>
+</html>

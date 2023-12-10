@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=xmlns:th=http://www.thymeleaf.org>
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;800&display=swap" rel="stylesheet">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/css/inicio.css">
+
+    <link rel="stylesheet" href="/css/styleAdmin.css">
+    <link rel="stylesheet" href="/css/paralaslistas.css">
+    <link rel="stylesheet" href="/css/snackbar.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <nav class="navegador">
+        <div class="logo">
+            <small class="pesa"><i class="fa-solid fa-dumbbell"></i>
+                <h3 class="navegador-title"></i>
+            </small>URBANGYM</h3>
+        </div>
+        <ul class="navegador-items">
+            <li><a th:href="@{/urbangym}">Inicio</a></li>
+            <li><a href="#">Instalaciones</a></li>
+            <li><a href="#">Novedades</a></li>
+            <li class="active"><a th:href="@{/urbangym/coach/list_users}">Coach</a></li>
+            <!-- <li><a href="#" th:text="'Bienvenida ' + ${nombre_del_usuario}">Tu espacio</a></span></li> -->
+            <li><a th:href="@{/urbangym/login/logout}">Cerrar Sesion</a></li>
+        </ul>
+        <div class="button-nav">
+            <i class="boton-nav fa-solid fa-bars fa-2x"></i>
+        </div>
+    </nav>
+    <br><br><br>
+    <h1 class="text-center">Lista de rutinas</h1>
+    <div class="contenido">
+        <table>
+            <thead class="thead-dark">
+                <th class="col">NOMBRE DE ROUTINE</th>
+                <th class="col">VER RUTINA</th>
+                <th class="col">ELIMINAR</th>
+            </thead>
+            <tbody>
+                <tr th:each=" rutina : ${lista_rutinas}">
+                    <td th:text="${rutina.name_routine}" style="color: #000;"></td>
+                    <td><a
+                            th:href="@{/urbangym/coach/routine/lista_rutinas/detalle/{id_rutina}(id_rutina=${rutina.id_routine})}">Ver</a>
+                    </td>
+                    <td><a th:href="@{/urbangym/coach/routine/lista_rutinas/eliminar/{id_rutina}(id_rutina=${rutina.id_routine})}"
+                            onclick="return confirmarEliminacion();">Eliminar</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="snackbar" class="snackbar">
+        Eliminación exitosa
+    </div>
+    <script src="https://kit.fontawesome.com/c37024d023.js" crossorigin="anonymous"></script>
+    <script src="/js/index.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        if (window.location.href.indexOf("?delete_success") > -1) {
+            mostrarSnackbar();
+        }
+
+        function mostrarSnackbar() {
+            var snackbar = document.getElementById("snackbar");
+            snackbar.className = "snackbar show";
+            setTimeout(function () {
+                snackbar.className = snackbar.className.replace("show", "");
+            }, 3000);
+        }
+    </script>
+
+    <script>
+        function confirmarEliminacion() {
+            return confirm("¿Estás seguro de que deseas eliminar esta Rutina?"); // Muestra la ventana emergente de confirmación
+        }
+    </script>
+</body>
+
+</html>
